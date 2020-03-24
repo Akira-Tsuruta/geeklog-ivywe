@@ -1960,7 +1960,11 @@ function phpblock_forum_menu() {
         	$items[] = COM_createLink($LANG_GF02['msg88'], $base.'memberlist.php', array('title' => $LANG_GF02['msg200']));
 		}
         $items[] = COM_createLink($LANG_GF07['3'], $base.'index.php?op=popular', array('title' => $LANG_GF02['msg201']));
-        $retval .= COM_makeList($items, PLG_getCSSClasses('forum-list-menu', 'forum'));
+        if (COM_versionCompare(VERSION, '2.2.1', '>=')) {
+            $retval .= COM_makeList($items, PLG_getThemeItem('forum-list-menu', 'forum'));
+        }else{
+            $retval .= COM_makeList($items, PLG_getCSSClasses('forum-list-menu', 'forum'));
+        }
     }
 
     return $retval;
